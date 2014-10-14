@@ -1,5 +1,5 @@
-FROM ubuntu:14.04
-MAINTAINER jerome.petazzoni@docker.com
+FROM registry.docker/debian:jessie
+MAINTAINER don@lindenlab.com
 
 # Let's start with some basic stuff.
 RUN apt-get update -qq && apt-get install -qqy \
@@ -9,12 +9,14 @@ RUN apt-get update -qq && apt-get install -qqy \
     lxc \
     iptables
     
-# Install Docker from Docker Inc. repositories.
-RUN curl -sSL https://get.docker.com/ubuntu/ | sh
+# Install Docker from Linden repositories.
+ADD ./docker.list /etc/apt/sources.list.d/docker.list
+RUN apt-get update -qq
+RUN apt-get install -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -qqy --allow-unauthenticated docker-config-linden
 
 # Install the magic wrapper.
-ADD ./wrapdocker /usr/local/bin/wrapdocker
-RUN chmod +x /usr/local/bin/wrapdocker
+ADD ./wrapdocker /usr/bin/wrapdocker
+RUN chmod +x /usr/bin/wrapdocker
 
 # Define additional metadata for our image.
 VOLUME /var/lib/docker

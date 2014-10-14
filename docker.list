@@ -1,0 +1,3 @@
+deb http://s3-proxy.lindenlab.com/private-builds-secondlife-com/hg/repo/docker-config-linden/rev/299685/arch/Linux/debian_repo ./
+deb http://s3-proxy.lindenlab.com/private-builds-secondlife-com/hg/repo/docker.io/rev/301747/arch/Linux/debian_repo ./
+
