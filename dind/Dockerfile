@@ -11,8 +11,7 @@ RUN apt-get update -qq && apt-get install -qqy \
     
 # Install Docker from Linden repositories.
 ADD ./docker.list /etc/apt/sources.list.d/docker.list
-RUN apt-get update -qq
-RUN apt-get install -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -qqy --allow-unauthenticated docker-config-linden
+RUN apt-get update -qq && apt-get install -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -qqy --allow-unauthenticated docker-config-linden && apt-get clean
 
 # Install the magic wrapper.
 ADD ./wrapdocker /usr/bin/wrapdocker
