@@ -3,6 +3,6 @@ volumes:
   - /var/run/docker.sock
 script:
   - docker build -t registry.docker/jpetazzo/dind dind
-  - docker push -t registry.docker/jpetazzo/dind dind
   - docker build -t registry.docker/jpetazzo/dbyd dbyd
-  - docker push -t registry.docker/jpetazzo/dbyd dbyd
+  - docker push registry.docker/jpetazzo/dind
+  - docker push registry.docker/jpetazzo/dbyd
