@@ -12,24 +12,24 @@ There is only one requirement: your Docker version should support the
 
 Build the image:
 ```bash
-docker build -t lindenlab.com/dind .
+docker build -t registry.docker/jpetazzo/dind .
 ```
 
 Run Docker-in-Docker and get a shell where you can play, and docker daemon logs
 to stdout:
 ```bash
-docker run --privileged -it -v /etc/aws/account/ll-docker-registry:/etc/aws/account/ll-docker-registry:ro lindenlab.com/dind
+docker run --privileged -it -v /etc/aws/account/ll-docker-registry:/etc/aws/account/ll-docker-registry:ro registry.docker/jpetazzo/dind
 ```
 
 Run Docker-in-Docker and get a shell where you can play, but docker daemon logs
 into `/var/log/docker.log`:
 ```bash
-docker run --privileged -it -v /etc/aws/account/ll-docker-registry:/etc/aws/account/ll-docker-registry:ro -e LOG=file lindenlab.com/dind
+docker run --privileged -it -v /etc/aws/account/ll-docker-registry:/etc/aws/account/ll-docker-registry:ro -e LOG=file registry.docker/jpetazzo/dind
 ```
 
 Run Docker-in-Docker and expose the inside Docker to the outside world:
 ```bash
-docker run --privileged -d -p 4444 -e PORT=4444 -v /etc/aws/account/ll-docker-registry:/etc/aws/account/ll-docker-registry:ro lindenlab.com/dind
+docker run --privileged -d -p 4444 -e PORT=4444 -v /etc/aws/account/ll-docker-registry:/etc/aws/account/ll-docker-registry:ro registry.docker/jpetazzo/dind
 ```
 
 Note: when started with the `PORT` environment variable, the image will just
@@ -40,7 +40,7 @@ background and execute a shell for you to play.
 Run Docker-in-Docker-in-Docker:
 ```bash
 Inside a dind container, run another dind container:
-docker run --privileged -it -v /dev/console:/dev/console -e LOG=file lindenlab.com/dind
+docker run --privileged -it -v /dev/console:/dev/console -e LOG=file registry.docker/jpetazzo/dind
 ```
 
 
@@ -51,7 +51,7 @@ be caused by AppArmor. In that case, try again, adding an extra flag to
 kick AppArmor out of the equation:
 
 ```bash
-docker run --privileged --lxc-conf="lxc.aa_profile=unconfined" -it -v /etc/aws/account/ll-docker-registry:/etc/aws/account/ll-docker-registry:ro lindenlab.com/dind
+docker run --privileged --lxc-conf="lxc.aa_profile=unconfined" -it -v /etc/aws/account/ll-docker-registry:/etc/aws/account/ll-docker-registry:ro registry.docker/jpetazzo/dind
 ```
 
 If you get the warning:

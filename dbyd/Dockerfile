@@ -1,4 +1,4 @@
-FROM lindenlab.com/debian:jessie
+FROM registry.docker/debian:jessie
 MAINTAINER don@lindenlab.com
 
 # Install Docker from Linden repositories.
