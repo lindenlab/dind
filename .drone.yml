@@ -1,0 +1,8 @@
+image: registry.docker/buildpack-deps:scm
+volumes:
+  - /var/run/docker.sock
+script:
+  - docker build -t registry.docker/jpetazzo/dbyd dbyd
+  - docker build -t registry.docker/jpetazzo/dind dind
+  - docker push registry.docker/jpetazzo/dbyd
+  - docker push registry.docker/jpetazzo/dind
